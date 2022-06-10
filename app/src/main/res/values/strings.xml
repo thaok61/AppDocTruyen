@@ -9,4 +9,31 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="user_page_title" description="The title of a page in a navigation bar item. [CHAR_LIMIT=50]">
+    User
+  </string>
+    <string name="book_page_title" description="The title of a page in a navigation bar item. [CHAR_LIMIT=50]">
+    Book
+  </string>
+    <string name="settings_page_title" description="The title of a page in a navigation bar item. [CHAR_LIMIT=50]">
+    Settings
+  </string>
+    <string name="cat_adaptive_menu_page_4_title" description="The title of a page in a navigation bar item. [CHAR_LIMIT=50]">
+    Page 4
+  </string>
+    <string name="cat_adaptive_nav_button" description="The navigation button of an adaptive layout. [CHAR_LIMIT=50]">
+    Expand/contract navigation bar
+  </string>
+    <string name="cat_adaptive_nav_fab_text" description="The title of the navigation bar's floating action button. [CHAR_LIMIT=50]">
+    Compose
+  </string>
+    <string name="cat_feed_fragment_title" description="Title of an element of the Feed fragment [CHAR_LIMIT=NONE]">
+    Title
+  </string>
+    <string name="cat_feed_sample_image_content_desc" description="Description of a sample image in the Feed dmeo [CHAR_LIMIT=NONE]">
+    Sample image
+  </string>
+    <string name="cat_feed_fragment_subhead" description="Subhead of the Feed fragment [CHAR_LIMIT=NONE]">
+    Subhead
+  </string>
 </resources>

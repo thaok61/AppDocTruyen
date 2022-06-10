@@ -19,8 +19,8 @@ public interface BookDao extends BaseDao<Book> {
     Flowable<List<Book>> loadAllByCategory(String category);
 
     @Query("SELECT * FROM book WHERE name LIKE '%'|| :name || '%' ")
-    Flowable<Book> findByName(String name);
+    Flowable<List<Book>> findByName(String name);
 
     @Query("SELECT * FROM book WHERE author LIKE '%'|| :author || '%' ")
-    Flowable<Book> findByAuthor(String author);
+    Flowable<List<Book>> findByAuthor(String author);
 }
