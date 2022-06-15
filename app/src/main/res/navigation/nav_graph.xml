@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.me.appdoctruyen.FirstFragment"
+        android:name="com.me.appdoctruyen.ui.book.list.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
