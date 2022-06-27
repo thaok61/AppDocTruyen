@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.me.appdoctruyen.ui.book.list.BookViewModel;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -22,32 +24,31 @@ import dagger.multibindings.IntoMap;
 import kotlin.annotation.AnnotationTarget;
 
 @Singleton
-public class ViewModelFactory implements ViewModelProvider.Factory {
-    private Map<Class<ViewModel>, Provider<ViewModel>> creators;
+public class ViewModelProviderFactory implements ViewModelProvider.Factory {
+
+    private static final String TAG = "ViewModelProviderFactor";
+
+    private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 
     @Inject
-    public ViewModelFactory(Map<Class<ViewModel>, Provider<ViewModel>> creators) {
+    public ViewModelProviderFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> creators) {
         this.creators = creators;
     }
 
-
-    @NonNull
     @Override
-    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        Provider<ViewModel> creator = creators.get(modelClass);
+    public <T extends ViewModel> T create(Class<T> modelClass) {
+        Provider<? extends ViewModel> creator = creators.get(modelClass);
         if (creator == null) {
-            for (Map.Entry<Class<ViewModel>, Provider<ViewModel>> entry : creators.entrySet()) {
-                modelClass.isAssignableFrom(entry.getKey());
-                {
+            for (Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>> entry : creators.entrySet()) {
+                if (modelClass.isAssignableFrom(entry.getKey())) {
                     creator = entry.getValue();
+                    break;
                 }
             }
         }
-
         if (creator == null) {
-            throw new IllegalArgumentException("Unknown model class: " + modelClass);
+            throw new IllegalArgumentException("unknown model class " + modelClass);
         }
-
         try {
             return (T) creator.get();
         } catch (Exception e) {
@@ -59,14 +60,11 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 @Module
 abstract class ViewModelBuilder {
     @Binds
-    abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory viewModelFactory);
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(BookViewModel.class)
-    abstract ViewModel bindViewModel(BookViewModel vm);
+    abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelProviderFactory viewModelFactory);
 }
 
+@Documented
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @MapKey
 @interface ViewModelKey {

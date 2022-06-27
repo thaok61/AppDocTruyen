@@ -16,7 +16,9 @@ import com.me.appdoctruyen.databinding.FragmentFirstBinding;
 
 import javax.inject.Inject;
 
-public class FirstFragment extends Fragment implements BookItemClicked {
+import dagger.android.support.DaggerFragment;
+
+public class FirstFragment extends DaggerFragment implements BookItemClicked {
 
     private FragmentFirstBinding binding;
 

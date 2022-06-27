@@ -4,12 +4,21 @@ import android.content.Context;
 
 import com.me.appdoctruyen.DocTruyenApplication;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
-@Component(modules = {AndroidSupportInjectionModule.class, ApplicationModule.class, MainActivityModule.class, RepositoryModuleBuilder.class})
+@Component(modules = {
+        RepositoryModuleBuilder.class,
+        ViewModelBuilder.class,
+        AndroidSupportInjectionModule.class,
+        ApplicationModule.class,
+        MainActivityModule.class,
+        })
+@Singleton
 public interface ApplicationComponent extends AndroidInjector<DocTruyenApplication> {
     @Component.Factory
     interface Factory {

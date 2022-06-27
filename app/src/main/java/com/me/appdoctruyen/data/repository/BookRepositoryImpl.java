@@ -5,12 +5,15 @@ import com.me.appdoctruyen.data.models.Book;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 
 public class BookRepositoryImpl implements BookRepository {
     BookDao bookDao;
 
+    @Inject
     public BookRepositoryImpl(BookDao bookDao) {
         this.bookDao = bookDao;
     }

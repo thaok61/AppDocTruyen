@@ -5,6 +5,8 @@ import com.me.appdoctruyen.data.models.User;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
@@ -12,6 +14,7 @@ import io.reactivex.rxjava3.core.Single;
 public class UserRepositoryImpl implements UserRepository {
     UserDao userDao;
 
+    @Inject
     public UserRepositoryImpl(UserDao userDao) {
         this.userDao = userDao;
     }
